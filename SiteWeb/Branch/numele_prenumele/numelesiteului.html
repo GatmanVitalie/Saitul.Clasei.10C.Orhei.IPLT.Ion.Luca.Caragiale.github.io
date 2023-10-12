@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator Trigonometric</title>
+    <!-- <<<<<<<<<<<<<<<<<<<<  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   iconul de la site-->
+    <link rel="icon" href="icon/icon.png" />
+    <!-- >>>>>>>>>>>>>>>>>>>>>>>> -->
+    <style>
+        body {
+            position: relative;
+            /* inceput  !!!!!!!!!!!!!!!!!!!!!!!!                   imaginea de fundal*/
+            background-image: url('images/Matematica.jpg');
+            /* sfarsit !*/
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        body::after {
+            content: "";
+            background: inherit;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            filter: blur(3px);
+            z-index: -5;
+
+        }
+
+        .container {
+
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 0px 90px 10px rgb(0, 0, 0);
+            width: 44vh;
+
+
+        }
+
+        input[type="number"] {
+            position: relative;
+            top: 15px;
+
+            width: 85%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .autor {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #dce2e7;
+        }
+
+        .backB button {
+            
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 8%;
+            width: 60px;
+            height: 60px;
+            padding: 10px;
+            background-color: #caced0;
+            /* Schimbat de la border-color la background-color */
+            border: none;
+            /* Șters border-color și border */
+            cursor: pointer;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .backB img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- inceput !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Aici vă introduceți denumirile si variabilele -->
+    <div class="container">
+        <h2>Calculator</h2>
+        <label for="angle">Introduceți a:</label>
+        <input type="number" id="VarA">
+        <br><br>
+        <label for="angle">Introduceți b:</label>
+        <input type="number" id="VarB">
+        <br><br>
+        <button onclick="calculeaza()">Calculați</button>
+
+        <br>
+        <p>a+b: <span id="plus"></span></p>
+        <p>a-b: <span id="minus"></span></p>
+        <p>a*b: <span id="inmultit"></span></p>
+        <p>a/b: <span id="inpartit"></span></p>
+    </div>
+
+    <div class="autor">
+        Autor: Numele Prenumele <!-- Autorul -->
+    </div>
+
+    <div class="backB">
+        <button onclick="BackF()"><img src="../../Images/back.png" alt="Button Image"></button>
+    </div>
+
+
+</body>
+<script>
+    function calculeaza() {
+        // luam elementele dupa id si le setam ca o variabila
+        var VarA = parseFloat(document.getElementById("VarA").value);
+        var VarB = parseFloat(document.getElementById("VarB").value);
+
+
+        var plus = VarA + VarB;
+        var minus = VarA - VarB;
+        var inmultit = VarA * VarB;
+        var inpartit = VarA / VarB;
+
+        document.getElementById('plus').textContent = plus;
+        document.getElementById('minus').textContent = minus;
+        document.getElementById('inmultit').textContent = inmultit;
+        document.getElementById('inpartit').textContent = inpartit.toFixed(3);
+    }
+
+    function BackF() {
+        window.location.href = '../../Main.html';
+    }
+
+
+</script>
+
+</html>
