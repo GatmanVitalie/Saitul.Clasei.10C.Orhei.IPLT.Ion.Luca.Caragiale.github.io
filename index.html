@@ -197,44 +197,28 @@
             -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 1);
         }
-
-        .background-video {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            object-fit: cover;
-            opacity: 0.7;
-        }
     </style>
 
     <script>
         function setRandomBackground() {
             var backgrounds = [
                 'url("LogImages/Main.jpg")',
-                'url("LogImages/backround (1).gif")',
-                'url("LogImages/backround (1).jpg")',
-                'url("LogImages/backround (10).jpg")',
-                'url("LogImages/backround (16).jpg")',
-                'url("LogImages/backround (17).jpg")',
-
+                'url("LogImages/Lofi(1).gif")',
+                'url("LogImages/Nori.jpg")',
+                'url("LogImages/Cascada.jpg")',
+                'url("LogImages/Cerc.jpg")',
                 'url("LogImages/Main.jpg")',
-                'url("LogImages/backround (1).gif")',
-                'url("Logimages/backround (1).jpg")',
-                'url("Logimages/backround (10).jpg")',
-                'url("Logimages/backround (16).jpg")',
-                'url("LogImages/backround (17).jpg")',
-
+                'url("LogImages/Lofi(1).gif")',
+                'url("LogImages/Nori.jpg")',
+                'url("LogImages/Cascada.jpg")',
+                'url("LogImages/Cerc.jpg")',
                 'url("LogImages/Polish_20210506_202442447.jpg")',
             ];
 
-            var randomIndex = Math.floor(Math.random() * backgrounds.length);
+            var randomIndex = Math.floor(Math.random() * (backgrounds.length));
             var randomBackground = backgrounds[randomIndex];
 
             document.body.style.backgroundImage = randomBackground;
-            document.body.style.backgroundVideo
         }
         window.addEventListener('load', setRandomBackground);
 
