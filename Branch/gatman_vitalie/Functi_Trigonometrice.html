@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator Trigonometric</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pi-symbol.svg/800px-Pi-symbol.svg.png" />
+            <style>
+        body {
+            position: relative;
+            /* Add relative positioning to the body */
+            background-image: url('https://alameda.edu/wp-content/uploads/2021/07/GettyImages-154932300.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+            /*hh*/
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        body::after {
+            content: "";
+            background: inherit;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            filter: blur(3px);
+            z-index: -5;
+
+        }
+
+        .container {
+
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0px 0px 90px 10px rgb(0, 0, 0);
+
+
+        }
+
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            position: relative;
+            top: 15px;
+            right: 5px;
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        span {
+            color: #007BFF;
+        }
+    </style>
+
+    <title>Autor</title>
+    <style>
+        .text-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #dce2e7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Calculator Trigonometric</h2>
+        <label for="angle">Introduceți unghiul (în grade):</label>
+        <input type="number" id="angle">
+        <br><br>
+        <button onclick="calculateTrigFunctions()">Calculați</button>
+
+        <br><br>
+        <p>Sinus: <span id="sinResult"></span></p>
+        <p>Cosinus: <span id="cosResult"></span></p>
+        <p>Tangenta: <span id="tanResult"></span></p>
+        <p>Cotangenta: <span id="cotanResult"></span></p>
+    </div>
+
+    <div class="text-container">
+        Autor: Gatman Vitalie
+    </div>
+
+    <script>
+        // Function to set the placeholder with a random number
+        function setRandomPlaceholder() {
+            const randomPlaceholder = Math.floor(Math.random() * 91); // Random number between 0 and 90
+            document.getElementById('angle').placeholder = `Ex: ${randomPlaceholder}`;
+        }
+
+        // Call the function to set the initial random placeholder
+        setRandomPlaceholder();
+
+        // Function to calculate trigonometric functions
+        function calculateTrigFunctions() {
+            var inputText = document.getElementById('angle').value;
+
+            // Check if the input is a valid number
+            if (!isNaN(inputText)) {
+                var angle = parseFloat(inputText);
+                var radians = angle * (Math.PI / 180);
+
+                var sinResult = Math.sin(radians);
+                var cosResult = Math.cos(radians);
+                var tanResult = sinResult / cosResult;
+                var cotanResult = cosResult / sinResult;
+
+                document.getElementById('sinResult').textContent = sinResult.toFixed(3);
+                document.getElementById('cosResult').textContent = cosResult.toFixed(3);
+                if (sinResult == 0) {
+                    cotanResult = Infinity;
+                } else if (sinResult == 1) {
+                    tanResult = Infinity;
+                }
+
+                document.getElementById('tanResult').textContent = tanResult.toFixed(3);
+                document.getElementById('cotanResult').textContent = cotanResult.toFixed(3);
+            } else if (event.keyCode === 13) {
+                // Run your function when Enter key is pressed
+                calculateTrigFunctions();
+            }
+        }
+
+        // Add an event listener to the input element for keydown event
+        document.getElementById('angle').addEventListener("keydown", function(event) {
+            if (event.keyCode === 13) {
+                // Run your function when Enter key is pressed
+                calculateTrigFunctions();
+            }
+        });
+    </script>
+</body>
+
+</html>
