@@ -4,15 +4,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             background-color: #fff;
             display: flex;
-            
-            justify-content: center;
-            height: 100px;
+            flex-direction: column;
+            align-items: center;
             margin: 0;
+            overflow: hidden;
         }
+
+        .Antet {
+            position: relative;
+            margin-bottom: 15px;
+            color: white;
+            background-color: black;
+            height: 60px;
+            width: 99%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .toggler {
+            /* ALWAYS KEEPING THE TOGGLER OR THE CHECKBOX ON TOP OF EVERYTHING :  */
+            z-index: 2;
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .hamburger {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 40px;
+            width: 40px;
+            padding: 0.6rem;
+
+            /* FOR DISPLAYING EVERY ELEMENT IN THE CENTER : */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CREATING THE MIDDLE LINE OF THE HAMBURGER : */
+        .hamburger>div {
+            position: relative;
+            top: 0;
+            left: 0;
+            background: white;
+            height: 2px;
+            width: 60%;
+            transition: all 0.4s ease;
+        }
+
+        /* CREATING THE TOP AND BOTTOM LINES : 
+        TOP AT -10PX ABOVE THE MIDDLE ONE AND BOTTOM ONE IS 10PX BELOW THE MIDDLE: */
+        .hamburger>div::before,
+        .hamburger>div::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            background: white;
+            width: 100%;
+            height: 2px;
+            transition: all 0.4s ease;
+        }
+
+        .hamburger>div::after {
+            top: 10px;
+        }
+
+        /* IF THE TOGGLER IS IN ITS CHECKED STATE, THEN SETTING THE BACKGROUND OF THE MIDDLE LAYER TO COMPLETE BLACK AND OPAQUE :  */
+        .toggler:checked+.hamburger>div {
+            background: rgba(255, 255, 255, 0);
+        }
+
+        .toggler:checked+.hamburger>div::before {
+            top: 0;
+            transform: rotate(45deg);
+            background: rgb(255, 255, 255);
+            z-index: 1;
+        }
+
+        /* AND ROTATING THE TOP AND BOTTOM LINES :  */
+        .toggler:checked+.hamburger>div::after {
+            top: 0;
+            transform: rotate(135deg);
+            background: rgb(255, 255, 255);
+        }
+
+        .menu {
+            position: absolute;
+            left: 0;
+            background-color: rgb(255, 255, 255);
+            width: 300px;
+            height: 100%;
+            color: rgb(0, 0, 0);
+            top: 60px;
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: visibility 0s, opacity 0.5s linear, transform 0.5s ease;
+        }
+
+        .menu.active {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+            transition: visibility 0s, opacity 0.5s linear, transform 0.5s ease;
+        }
+
+        .menu button {
+            
+            display: flex;
+            border-bottom: 1,5px rgb(33, 32, 39) solid;
+            border-left: none !important;
+            border-right: none !important;
+            border-top: none;
+            justify-content: center;
+            row-gap: -1px;
+            width: 80%;
+            /* Adjusted icon size */
+            height: 60px;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Times New Roman';
+            font-size: 18px;
+            /* Adjusted font size */
+            color: inherit;
+            background: none;
+            cursor: pointer;
+            
+            outline: none;
+            transition: background-color 0.3s ease;
+
+        }
+
+        .menu button::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .menu button::before {
+            font-family: 'FontAwesome';
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .menu button:hover {
+            background-color: #e8eaf1;
+            transition: all 0.1s linear;
+        }
+
+
+
 
         .Buttons {
             display: flex;
@@ -21,7 +188,7 @@
             flex-wrap: wrap;
         }
 
-        button {
+        .Buttons button {
             border-radius: 8%;
             width: 110px;
             height: 110px;
@@ -33,17 +200,56 @@
             color: #fff;
             font-size: 16px;
             font-weight: bold;
+            text-align: center;
+            align-items: center;
         }
 
-        button img {
+        .Buttons button:hover {
+            border-radius: 8%;
+            width: 110px;
+            height: 110px;
+            padding: 10px;
+            background-color: #2676ab;
+            border: 100%;
+            cursor: pointer;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .Buttons button img {
             max-width: 100%;
             max-height: 100%;
             object-fit: cover;
         }
     </style>
-    <title>Main</title>
+
 
     <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+        const toggler = document.querySelector('.toggler');
+        const menu = document.querySelector('.menu');
+
+        toggler.addEventListener('change', function () {
+            menu.classList.toggle('active', this.checked);
+        });
+
+        document.addEventListener('click', function (event) {
+            // Check if the clicked element is outside the menu and the toggler
+            if (!menu.contains(event.target) && !toggler.contains(event.target)) {
+                menu.classList.remove('active');
+                toggler.checked = false;
+            }
+        });
+    });
+
+        function CodulSursa()
+        {
+            window.location.href = 'https://github.com/GatmanVitalie/Saitul.Clasei.10C.Orhei.IPLT.Ion.Luca.Caragiale.github.io/';
+        }
+
         function buttonClicked() {
             window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
         }
@@ -58,8 +264,24 @@
 
 <body>
 
+    <form class="Antet">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger">
+            <div></div>
+        </div>
+    </form>
+
+    <form class="menu">
+        <button type="button" onclick="buttonClicked()">Acasă</button>
+        <button type="button" onclick="buttonClicked()">Servici</button>
+        <button type="button" onclick="CodulSursa()">Codul Sursă</button>
+        <button type="button" onclick="CodulSursa()">Informații</button>
+
+    </form>
+
     <div class="Buttons">
-        <button onclick="buttonClicked1()"><img src="Branch/gatman_vitalie/Icon/Chimie.png" alt="Button Image"></button>
+        <button onclick="buttonClicked1()"><img src="Branch/gatman_vitalie/Icon/Pi-symbol.svg"
+                alt="Button Image"></button>
         <button onclick="buttonClicked2()"><img src="Branch/numele_prenumele/icon/icon.png" alt="Button Image"></button>
         <button onclick="buttonClicked()"><img src="your-image-url.jpg" alt="Button Image"></button>
         <button onclick="buttonClicked()"><img src="your-image-url.jpg" alt="Button Image"></button>
@@ -120,6 +342,7 @@
         <button onclick="buttonClicked()"><img src="your-image-url.jpg" alt="Button Image"></button>
         <button onclick="buttonClicked()"><img src="your-image-url.jpg" alt="Button Image"></button>
     </div>
+
 </body>
 
 </html>
