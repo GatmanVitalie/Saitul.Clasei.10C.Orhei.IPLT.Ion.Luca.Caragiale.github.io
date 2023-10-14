@@ -5,60 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-
-            /* background-image: url('images/mikael-gustafsson-wallpaper-mikael-gustafsson.jpg'); */
+            background-color: aquamarine;
+            height: 100vh;
+            background-image: url('images/Main.jpg');
+            margin: 0;
+            background-position: center;
 
         }
 
         form {
-            /* background-color: rgba(255, 255, 255, 0.5); */
-
-            /* backdrop-filter: blur(3px); */
-            /* padding: 20px;
-            border-radius: 8px; */
-            /* border-color: rgb(255, 255, 255); */
-            /* border: 4px solid rgb(240, 244, 250); */
-            /* box-shadow: 0 0 10px rgb(255, 255, 255); */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transform: scale(1.45, 1.45);
-            font-weight: bold;
-            position: relative;
-            top: -32px;
-
-
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
         #myForm {
             position: relative;
+            background-color: rgba(80, 37, 37, 0.5);
 
+
+            /* Center content horizontally */
+            width: 300px;
+            height: 440px;
+            bottom: 5vh;
+            /* scale: 1.2 1.2; */
         }
 
+        .Componente {
+            display: flex;
+            flex-direction: column;
 
-        label {
-            color: #fff;
-            display: block;
-            margin-bottom: 8px;
-            margin-top: 20px;
-
+            /* Center content vertically */
+            align-items: center;
+            flex-wrap: nowrap;
+            height: 100%;
+            width: 100%;
         }
 
         input {
 
-            outline: none;
+            outline: none !important;
 
             color: #fff;
             width: 100%;
@@ -88,51 +82,27 @@
 
         }
 
-        label:focus {
-            outline: none;
-
-
-        }
-
-        label::after {
-            outline: none;
-
-        }
-
-        input::after {
-            outline: none;
-
+        .DataC {
             color: #fff;
-            width: 100%;
-            padding: 8px;
-            margin-top: 18px;
-            box-sizing: border-box;
-
-            background: rgba(167, 177, 192, 0.787);
-            border-radius: 12px;
-            box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(1px);
-            -webkit-backdrop-filter: blur(1px);
-            border: 1px solid rgba(255, 255, 255, 1);
-
+            display: block;
+            margin-bottom: 8px;
+            margin-top: 20px;
 
         }
-
 
         .Butons {
             display: flex;
-            justify-content: center;
+            align-items: center;
             /* margin-top: -2px; */
             gap: 25px;
 
+
+
         }
 
-
-
-
-        button {
+        .Butons button {
             position: relative;
-            right: -3px;
+            left: 0.5vh;
 
             margin-top: 17px;
 
@@ -149,7 +119,7 @@
             border: 1px solid rgba(255, 255, 255, 1);
         }
 
-        button:hover {
+        .Butons button:hover {
             transition-property: border, padding;
             transition-duration: 150ms;
             transition-timing-function: ease;
@@ -168,91 +138,147 @@
 
         }
 
-        .titlu {
-            font-family: Soin Sans Pro, Tahoma, Geneva, Verdana, sans-serif;
+        .Avatar button {
+            position: relative;
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            cursor: pointer;
 
+            background: rgba(167, 177, 192, 0.171);
+            border-radius: 20px;
+            box-shadow: 0 0 7px rgba(182, 182, 188, 0.288);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
+            border: 2px solid rgba(255, 255, 255, 1);
+            border-radius: 100%;
+            cursor: pointer;
+            justify-content: center;
             color: #fff;
-            font-weight: bold;
-            margin-bottom: 0px;
-            font-size: 24px;
+            align-items: center;
         }
 
-        .square {
-            z-index: -4;
-            width: 196px;
-
-            height: 210px;
+        .Avatar button img {
             position: absolute;
-            top: 16px;
-            left: 13px;
+            top: 0;
+            left: 0;
+            width: 102%;
+            height: 102%;
+            object-fit: cover;
+            transition: opacity, filter 0.3s ease;
+        }
 
-            /* Poziționare absolută */
+        /* Hide the second image by default */
+        .Avatar button img.hover-image {
+            opacity: 0;
+        }
 
-            transform: scale(1.45, 1.45);
+        /* Show the second image on hover */
+        .Avatar button:hover img.hover-image {
+            opacity: 0.9;
+        }
 
-            background: rgba(29, 28, 28, 0.122);
-            border-radius: 16px;
-            box-shadow: 0 0 30px rgba(212, 213, 224, 0.307);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 1);
+        /* Style adjustments for the normal image */
+        .Avatar button img.normal-image {
+            opacity: 1;
+        }
+
+        /* Hide the normal image on hover */
+        .Avatar button:hover img.normal-image {
+            opacity: 1;
+            filter: brightness(0.5);
+
         }
     </style>
 
     <script>
-        function setRandomBackground() {
-            var backgrounds = [
-                'url("Images/Main.jpg")',
-                'url("Images/Lofi(1).gif")',
-                'url("Images/Nori.jpg")',
-                'url("Images/Cascada.jpg")',
-                'url("Images/Cerc.jpg")',
-                'url("Images/Main.jpg")',
-                'url("Images/Lofi(1).gif")',
-                'url("Images/Nori.jpg")',
-                'url("Images/Cascada.jpg")',
-                'url("Images/Cerc.jpg")',
-                'url("Images/Polish_20210506_202442447.jpg")',
-            ];
+        function adjustFormSize() {
+            // Default form size
+            var sizeDefoult = 1.4; // Assign a default value
 
-            var randomIndex = Math.floor(Math.random() * (backgrounds.length));
-            var randomBackground = backgrounds[randomIndex];
+            // Get the current screen height
+            var screenHeight = document.documentElement.clientHeight;
 
-            document.body.style.backgroundImage = randomBackground;
+            // Calculate the new size
+            var newSize = sizeDefoult * (screenHeight / 1080);
+
+            // Set the new size as inline style
+            document.getElementById("myForm").style.scale = newSize;
+
         }
-        window.addEventListener('load', setRandomBackground);
+        window.onload = adjustFormSize;
+        window.onresize = adjustFormSize;
 
         function openSignUpPage() {
             // window.location.href = 'https://github.com/GatmanVitalie/CoolLokinLogInPage';
             window.location.href = 'Main.html';
         }
+
+        window.onload = function () {
+        adjustFormSize();
+
+        document.getElementById("avatarInput").addEventListener("change", function (event) {
+            const fileInput = event.target;
+            const avatarButton = document.querySelector(".Avatar button");
+            const normalImage = document.querySelector(".Avatar button img.normal-image");
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    normalImage.src = e.target.result;
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        });
+    };
+
+    window.onresize = adjustFormSize;
+
+        function ChangeAvatar() {
+            document.getElementById("avatarInput").click();
+        }
+
+
+
     </script>
+
 </head>
 
 <body>
 
-    <form id="myForm" action="procesare.php" method="post">
+    <form id="myForm" action="Main.html" method="post">
+        <div class="Componente">
+            <div class="Avatar">
+                <div class="Avatar">
+
+                    <button type="button" onclick="document.getElementById('avatarInput').click()">
+                        <img src="Images/Avatar.png" alt="Button Image" class="normal-image">
+                        <img src="Images/Plus.png" alt="Second Image" class="hover-image">
+                    </button>
+                    <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                </div>
+            </div>
+            <div class="titlu">
+                <a>Introduceți datele:</a>
+            </div>
 
 
+            <header class="DataC">Numele Prenumele:</header>
+            <input type="text" id="username" name="username" required>
 
-        <div class="titlu">
-            <a>Introduceți datele:</a>
+
+            <header class="DataC">Parola:</header>
+            <input type="password" id="password" name="password" required>
+            <div class="Butons">
+                <button>Log in</button>
+                <button>Sign Up</button>
+            </div>
+
+            <div class="square"></div>
         </div>
-
-
-
-        <label for="username">Numele:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Parola:</label>
-        <input type="password" id="password" name="password" required>
-        <div class="Butons">
-            <button type="button" onclick="openSignUpPage()">Log in</button>
-            <button type="button" onclick="openSignUpPage()">Sign Up</button>
-        </div>
-
-        <div class="square"></div>
-
     </form>
 
 </body>

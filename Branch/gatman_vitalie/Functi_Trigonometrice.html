@@ -3,12 +3,13 @@
 
 <head>
     <title>Calculator Trigonometric</title>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pi-symbol.svg/800px-Pi-symbol.svg.png" />
-            <style>
+    <link rel="icon"
+        href="Icon/Pi-symbol.svg" /> 
+    <style>
         body {
             position: relative;
             /* Add relative positioning to the body */
-            background-image: url('https://alameda.edu/wp-content/uploads/2021/07/GettyImages-154932300.jpg');
+            background-image: url('images/Matematica.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -47,6 +48,7 @@
             padding: 20px;
             text-align: center;
             box-shadow: 0px 0px 90px 10px rgb(0, 0, 0);
+            width: 20%;
 
 
         }
@@ -92,10 +94,10 @@
         span {
             color: #007BFF;
         }
-    </style>
 
-    <title>Autor</title>
-    <style>
+
+
+ 
         .text-container {
             position: absolute;
             bottom: 20px;
@@ -103,6 +105,32 @@
             font-family: Arial, sans-serif;
             font-size: 16px;
             color: #dce2e7;
+        }
+
+        .backB button {
+            
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 8%;
+            width: 60px;
+            height: 60px;
+            padding: 10px;
+            background-color: #caced0;
+            /* Schimbat de la border-color la background-color */
+            border: none;
+            /* Șters border-color și border */
+            cursor: pointer;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .backB img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -124,6 +152,10 @@
 
     <div class="text-container">
         Autor: Gatman Vitalie
+    </div>
+
+    <div class="backB">
+        <button onclick="BackF()"><img src="../../Images/back.png" alt="Button Image"></button>
     </div>
 
     <script>
@@ -167,12 +199,16 @@
         }
 
         // Add an event listener to the input element for keydown event
-        document.getElementById('angle').addEventListener("keydown", function(event) {
+        document.getElementById('angle').addEventListener("keydown", function (event) {
             if (event.keyCode === 13) {
                 // Run your function when Enter key is pressed
                 calculateTrigFunctions();
             }
         });
+
+        function BackF() {
+            window.location.href = '../../Main.html';
+        }
     </script>
 </body>
 
