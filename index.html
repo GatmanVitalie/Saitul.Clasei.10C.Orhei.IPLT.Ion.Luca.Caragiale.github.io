@@ -216,26 +216,26 @@
         }
 
         window.onload = function () {
-        adjustFormSize();
+            adjustFormSize();
 
-        document.getElementById("avatarInput").addEventListener("change", function (event) {
-            const fileInput = event.target;
-            const avatarButton = document.querySelector(".Avatar button");
-            const normalImage = document.querySelector(".Avatar button img.normal-image");
+            document.getElementById("avatarInput").addEventListener("change", function (event) {
+                const fileInput = event.target;
+                const avatarButton = document.querySelector(".Avatar button");
+                const normalImage = document.querySelector(".Avatar button img.normal-image");
 
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
+                if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
 
-                reader.onload = function (e) {
-                    normalImage.src = e.target.result;
-                };
+                    reader.onload = function (e) {
+                        normalImage.src = e.target.result;
+                    };
 
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        });
-    };
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            });
+        };
 
-    window.onresize = adjustFormSize;
+        window.onresize = adjustFormSize;
 
         function ChangeAvatar() {
             document.getElementById("avatarInput").click();
@@ -273,8 +273,8 @@
             <header class="DataC">Parola:</header>
             <input type="password" id="password" name="password" required>
             <div class="Butons">
-                <button>Log in</button>
-                <button>Sign Up</button>
+                <button onclick="saveData()">Log in</button>
+                <button onclick="saveData()">Sign Up</button>
             </div>
 
             <div class="square"></div>
